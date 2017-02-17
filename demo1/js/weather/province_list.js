@@ -24,8 +24,8 @@ export default class ProvinceList extends Component {
 	render(){
 		return(
 			<ListView 
-			dataSource={this.state.dataSource}
-			renderRow={this._renderRow.bind(this)}
+				dataSource={this.state.dataSource}
+				renderRow={this._renderRow.bind(this)}
 			/>
 		);
 	}
