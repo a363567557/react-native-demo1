@@ -11,7 +11,7 @@ import {
 	ListView
 } from 'react-native';
 
-import City from './city_list';
+import CityList from './city_list';
 //把样式抽离，独立成为一个文件
 import styles from './style/CommonStyle';
 
@@ -40,7 +40,7 @@ export default class ProvinceList extends Component {
 					renderRow={this._renderRow.bind(this)}
 				/>
 			{spinner}
-			</View>
+		</View>
 
 		);
 	}
@@ -65,6 +65,8 @@ export default class ProvinceList extends Component {
 		fetch(URL)
 		.then(response => response.json())
 		.then((json) =>{
+			//json 是数组
+			//json item 结构{id:123,name:abc}
 			console.log(json);
 			this.setState({
 				isLoading: false,
@@ -80,8 +82,8 @@ export default class ProvinceList extends Component {
 	_renderRow(rowData,sectionID,rowID){
 		return(
 			<TouchableHighlight
-			onPress={()=> this.rowPressed(rowData)}
-			underlayColor='#dddddd'>
+				onPress={()=> this.rowPressed(rowData, sectionID, rowID)}
+				underlayColor='#dddddd'>
 			<View>
 				<View style={styles.rowContainer}>
 					<View style={styles.textContainer}>
@@ -98,13 +100,22 @@ export default class ProvinceList extends Component {
 		</TouchableHighlight>
 		);
 	}
+	
+	rowPressed(rowData, sectionID, rowID) {
+		const { navigator } = this.props;
+		if(navigator) {
+			navigator.push({
+				name: CityList + '',
+				component: CityList,
+				params: {
+					rowData: rowData,
+					sectionID: sectionID,
+					rowID: rowID,
+					provinceName:rowData.name,
+					provinceId:rowData.id,
+				}
+			});
+		}
 
-	rowPressed(rowData){
-		this.props.navigator.push({
-			title: rowData.name,
-			index: 1,
-			component: City,
-			passProps: {cityid: rowData.id}
-		});
 	}
 }

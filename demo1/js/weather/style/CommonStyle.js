@@ -8,7 +8,6 @@ var CommonStyles = StyleSheet.create({
 	 flex: 1,
  },
  container: {
-	 marginTop: 10,
  },
  separator: {
  height: 1,
