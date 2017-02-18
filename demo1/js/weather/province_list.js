@@ -12,33 +12,8 @@ import {
 } from 'react-native';
 
 import City from './city_list';
-
-styles = StyleSheet.create({
-
-	textContainer: {
-	 flex: 1,
- },
- container: {
-	 marginTop: 10,
- },
- separator: {
- height: 1,
- backgroundColor: "#dddddd",
- },
- id: {
- fontSize: 25,
- fontWeight: 'bold',
- color: '#48BBEC',
- },
- title: {
-	 fontSize: 20,
-	 color: '#656565',
- },
- rowContainer: {
-	 flexDirection: 'row',
-	 padding: 10,
- },
-});
+//把样式抽离，独立成为一个文件
+import styles from './style/CommonStyle';
 
 export default class ProvinceList extends Component {
 
