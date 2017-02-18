@@ -5,11 +5,40 @@ import {
 	Text,
 	View,
 	Navigator,
+	TouchableOpacity,
+	TouchableHighlight,
+	ActivityIndicator,
 	ListView
 } from 'react-native';
 
-import CityList from './city_list';
-import API from './api';
+import City from './city_list';
+
+styles = StyleSheet.create({
+
+	textContainer: {
+	 flex: 1,
+ },
+ container: {
+	 marginTop: 10,
+ },
+ separator: {
+ height: 1,
+ backgroundColor: "#dddddd",
+ },
+ id: {
+ fontSize: 25,
+ fontWeight: 'bold',
+ color: '#48BBEC',
+ },
+ title: {
+	 fontSize: 20,
+	 color: '#656565',
+ },
+ rowContainer: {
+	 flexDirection: 'row',
+	 padding: 10,
+ },
+});
 
 export default class ProvinceList extends Component {
 
@@ -17,46 +46,90 @@ export default class ProvinceList extends Component {
 		super(props);
 		const ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1 !== r2)});
 		this.state = {
-			dataSource:ds.cloneWithRows(this._getRows())
+			isLoading : true,
+			dataSource:ds.cloneWithRows(this._getRowsStatic())
 		};
 	}
 
 
 	render(){
+		var spinner = this.state.isLoading ? (
+			<ActivityIndicator
+				hidden = 'true'
+				size = 'large'/>) : (<View/>);
 		return(
-			<ListView
-				dataSource={this.state.dataSource}
-				renderRow={this._renderRow.bind(this)}
-			/>
+			<View style={styles.container}>
+				<ListView
+					dataSource={this.state.dataSource}
+					enableEmptySections={true}
+					renderRow={this._renderRow.bind(this)}
+				/>
+			{spinner}
+			</View>
+
 		);
 	}
 
+  //通过这个方法，执行耗时操作
+	componentDidMount(){
+		this._executeQuery();
+	}
+
+	_getRowsStatic(){
+		const dataBlob = [''];
+		return dataBlob;
+	}
 
 	_getRows(){
-		var response = API.getPovince();
-		console.log(response);
-		const dataBlob = ['北京市','天津市','河北省','山西省','内蒙古自治区','辽宁省','吉林省','黑龙江省','上海市','江苏省','浙江省','安徽省','福建省','江西省','山东省','河南省','湖北省','湖南省','广东省','广西壮族自治区'];
-		return dataBlob;
+		var response = _executeQuery();
+		return response;
+	}
+
+	_executeQuery(){
+		var URL = "http://guolin.tech/api/china";
+		fetch(URL)
+		.then(response => response.json())
+		.then((json) =>{
+			console.log(json);
+			this.setState({
+				isLoading: false,
+				//直接传递json数组下去
+				dataSource: this.state.dataSource.cloneWithRows(json),
+			})
+		})
+		.catch((error) =>{
+			console.log(error);
+		})
 	}
 
 	_renderRow(rowData,sectionID,rowID){
 		return(
-			<Text onPress={this._onPress.bind(this,rowData,sectionID,rowID)}>{rowData}</Text>
+			<TouchableHighlight
+			onPress={()=> this.rowPressed(rowData)}
+			underlayColor='#dddddd'>
+			<View>
+				<View style={styles.rowContainer}>
+					<View style={styles.textContainer}>
+						<Text style={styles.id}>
+							{rowData.id}
+						</Text>
+						<Text style={styles.title}>
+							{rowData.name}
+						</Text>
+					</View>
+				</View>
+				<View style={styles.separator}/>
+			</View>
+		</TouchableHighlight>
 		);
 	}
 
-	_onPress(rowData,sectionID,rowID){
-		const {navigator} = this.props;
-		if(navigator){
-			navigator.push({
-				name:CityList+'',
-				component:CityList,
-				params:{
-					rowData:rowData,
-					sectionID:sectionID,
-					rowID:rowID
-				}
-			});
-		}
+	rowPressed(rowData){
+		this.props.navigator.push({
+			title: rowData.name,
+			index: 1,
+			component: City,
+			passProps: {cityid: rowData.id}
+		});
 	}
 }
