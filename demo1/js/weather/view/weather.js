@@ -1,3 +1,5 @@
+//天气demo控件入口
+
 import React from 'react';
 import {
 	Navigator,

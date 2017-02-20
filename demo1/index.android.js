@@ -13,25 +13,12 @@ import {
   Navigator
 } from 'react-native';
 
-import ProvinceList from './js/weather/view/province_list';
+import WeatherComponent from './js/weather/index.weather';
 
 export default class demo1 extends Component {
   render() {
-  	let defaultComponent = ProvinceList;
-	let defaultName = defaultComponent+'';
     return (
-      	<Navigator
-				initialRoute={{name:defaultName,component:defaultComponent}}
-				
-				configureScene={(route)=>{
-					return Navigator.SceneConfigs.HorizontalSwipeJump;
-				}}
-				
-				renderScene={(route,navigator)=>{
-						let Component = route.component;
-						return <Component {...route.params} navigator={navigator} />
-				}}
-			/>
+      	<WeatherComponent />
     );
   }
 }
