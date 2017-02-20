@@ -60,3 +60,10 @@ http://guolin.tech/api/weather?cityid=CN101280101&key=70ae0fa5842b4616b5f1cc8b41
   ]
 }
 ```
+背景贴图接口:   http://guolin.tech/api/bing_pic
+
+数据返回，必应每日贴图链接：
+
+```java
+http://cn.bing.com/az/hprichbg/rb/YorkshireWinter_ZH-CN9258658675_1920x1080.jpg
+```
