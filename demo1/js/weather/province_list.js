@@ -14,11 +14,13 @@ import {
 import CityList from './city_list';
 //把样式抽离，独立成为一个文件
 import styles from './style/CommonStyle';
+import WeatherAPI from './api/WeatherAPI';
 
 export default class ProvinceList extends Component {
 
 	constructor(props){
 		super(props);
+		this.weatherAPI = new WeatherAPI();
 		this.URL = "http://guolin.tech/api/china";
 		const ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1 !== r2)});
 		this.state = {
@@ -62,22 +64,12 @@ export default class ProvinceList extends Component {
 	}
 
 	_executeQuery(){
-		
-		fetch(this.URL)
-		.then(response => response.json())
-		.then((json) =>{
-			//json 是数组
-			//json item 结构{id:123,name:abc}
-			console.log(json);
+		this.weatherAPI.getPovince((json)=>{
 			this.setState({
 				isLoading: false,
-				//直接传递json数组下去
 				dataSource: this.state.dataSource.cloneWithRows(json),
-			})
-		})
-		.catch((error) =>{
-			console.log(error);
-		})
+				})
+			});
 	}
 
 	_renderRow(rowData,sectionID,rowID){

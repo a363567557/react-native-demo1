@@ -11,12 +11,14 @@ import {
 import Weather from './weather';
 import {NavigatormaperStyle} from './style/NavigatormaperStyle';
 import styles from './style/CommonStyle';
+import WeatherAPI from './api/WeatherAPI';
+
 
 export default class CityList2 extends React.Component {
 	
 	constructor(props){
 		super(props);
-		this.URL = props.url+'/'+props.cityId;
+		this.weatherAPI = new WeatherAPI();
 		this.ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1!==r2)});
 		this.state={
 			isLoading:true,
@@ -31,15 +33,11 @@ export default class CityList2 extends React.Component {
 	
 	//获取城市列表数据
 	getCityListData(){
-		fetch(this.URL)
-		.then(response=>response.json())
-		.then((json)=>{
+		
+		this.weatherAPI.getCountyCity(this.props.provinceId,this.props.cityId,(json)=>{
 			this.setState({
 				dataSource:this.ds.cloneWithRows(json),
 			})
-		})
-		.catch((error)=>{
-			alert(error);
 		});
 	}
 	
@@ -77,7 +75,7 @@ export default class CityList2 extends React.Component {
 		    				<Text>left</Text>
 		    			</TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.title}>
-					    	<Text>{this.props.cityName}</Text>
+					    	<Text>{this.props.provinceName}--{this.props.cityName}</Text>
 					    </TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.rightButton}>
 						    <Text>right</Text>

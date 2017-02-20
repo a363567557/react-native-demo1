@@ -11,12 +11,14 @@ import {
 import CityList2 from './city_list2';
 import {NavigatormaperStyle} from './style/NavigatormaperStyle';
 import styles from './style/CommonStyle';
+import WeatherAPI from './api/WeatherAPI';
+
 
 export default class CityList extends React.Component {
 	
 	constructor(props){
 		super(props);
-		this.URL = props.url+'/'+props.provinceId;
+		this.weatherAPI = new WeatherAPI();
 		this.ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1!==r2)});
 		this.state={
 			isLoading:true,
@@ -31,15 +33,11 @@ export default class CityList extends React.Component {
 	
 	//获取城市列表数据
 	getCityListData(){
-		fetch(this.URL)
-		.then(response=>response.json())
-		.then((json)=>{
+		this.weatherAPI.getCity(this.props.provinceId,(json)=>{
+			console.log(json);
 			this.setState({
 				dataSource:this.ds.cloneWithRows(json),
 			})
-		})
-		.catch((error)=>{
-			alert(error);
 		});
 	}
 	
@@ -61,6 +59,8 @@ export default class CityList extends React.Component {
 					rowData:rowData,
 					sectionID:sectionID,
 					rowID:rowID,
+					provinceId:this.props.provinceId,
+					provinceName:this.props.provinceName,
 					cityName:rowData.name,
 					cityId:rowData.id,
 					url:this.URL,
