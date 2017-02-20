@@ -5,7 +5,8 @@ import {
     TouchableOpacity,
     Text,
     ListView,
-    TouchableHighlight
+    TouchableHighlight,
+    ActivityIndicator
 } from 'react-native';
 
 import Weather from './weather';
@@ -33,9 +34,9 @@ export default class CityList2 extends React.Component {
 	
 	//获取城市列表数据
 	getCityListData(){
-		
 		this.weatherAPI.getCountyCity(this.props.provinceId,this.props.cityId,(json)=>{
 			this.setState({
+				isLoading:false,
 				dataSource:this.ds.cloneWithRows(json),
 			})
 		});
@@ -68,6 +69,10 @@ export default class CityList2 extends React.Component {
 	}
 	
 	render(){
+		const spinner = this.state.isLoading ? (
+					<ActivityIndicator
+						hidden = 'true'
+						size = 'large'/>) : (<View/>);		
 		return(
 			<View>
 				<View style={NavigatormaperStyle.container}>
@@ -82,9 +87,11 @@ export default class CityList2 extends React.Component {
 						</TouchableHighlight>
 		    	</View>
 				<ListView 
+					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={this.renderRow.bind(this)}
 				/>
+				{spinner}
 			</View>
 		);
 	}

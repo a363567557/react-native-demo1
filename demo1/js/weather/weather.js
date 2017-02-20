@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
 	Text,
 	View,
-	TouchableHighlight
+	TouchableHighlight,
+	ActivityIndicator
 } from 'react-native';
 
 import {NavigatormaperStyle} from './style/NavigatormaperStyle';
@@ -14,11 +15,16 @@ export default class Weather extends Component {
 		super(props);
 		this.weatherAPI = new WeatherAPI();
 		this.state = {
+			isLoading:true,
 			weather: '',
 		}
 	}
 
 	render() {
+		const spinner = this.state.isLoading ? (
+					<ActivityIndicator
+						hidden = 'true'
+						size = 'large'/>) : (<View/>);	
 		return(
 			<View>
 				<View style={NavigatormaperStyle.container}>
@@ -33,6 +39,7 @@ export default class Weather extends Component {
 						</TouchableHighlight>
 		    	</View>
 		    	<Text>{this.state.weather}</Text>
+		    	{spinner}
 		    </View>
 		);
 	}
@@ -55,26 +62,12 @@ export default class Weather extends Component {
 				if(weather.status == 'ok'){//请求到天气数据
 					let weatherInfo = weather.basic.city + '--' + weather.daily_forecast[0].cond.txt_d + '---' + weather.daily_forecast[0].cond.txt_n;
 					this.setState({
+						isLoading:false,
 						weather: weatherInfo,
 						//daily_forecast
 					})
 				}
 		});
-//		fetch(this.URL)
-//			.then(response => response.json())
-//			.then((json) => {
-//				let weather = json.HeWeather[0];
-//				if(weather.status == 'ok'){//请求到天气数据
-//					let weatherInfo = weather.basic.city + '--' + weather.daily_forecast[0].cond.txt_d + '---' + weather.daily_forecast[0].cond.txt_n;
-//					this.setState({
-//						weather: weatherInfo,
-//						//daily_forecast
-//					})
-//				}
-//			})
-//			.catch((error) => {
-//				alert(error);
-//			})
 	}
 
 	componentDidMount() {

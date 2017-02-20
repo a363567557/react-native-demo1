@@ -5,7 +5,8 @@ import {
     TouchableOpacity,
     Text,
     ListView,
-    TouchableHighlight
+    TouchableHighlight,
+    ActivityIndicator
 } from 'react-native';
 
 import CityList2 from './city_list2';
@@ -36,6 +37,7 @@ export default class CityList extends React.Component {
 		this.weatherAPI.getCity(this.props.provinceId,(json)=>{
 			console.log(json);
 			this.setState({
+				isLoading:false,
 				dataSource:this.ds.cloneWithRows(json),
 			})
 		});
@@ -63,16 +65,24 @@ export default class CityList extends React.Component {
 					provinceName:this.props.provinceName,
 					cityName:rowData.name,
 					cityId:rowData.id,
-					url:this.URL,
 				}
 			})
 		}
 	}
 	
 	render(){
+		
+		const spinner = this.state.isLoading ? (
+			<ActivityIndicator
+				hidden = 'true'
+				size = 'large'/>) : (<View/>);
+		
 		return(
 			<View>
-				<View style={NavigatormaperStyle.container}>
+				<View 
+					style={NavigatormaperStyle.container}
+					hidden = {!this.state.isLoading}
+					>
 		    			<TouchableHighlight style={NavigatormaperStyle.leftButton} onPress={this.onLeftOnClick.bind(this)}>
 		    				<Text>left</Text>
 		    			</TouchableHighlight>
@@ -84,9 +94,11 @@ export default class CityList extends React.Component {
 						</TouchableHighlight>
 		    	</View>
 				<ListView 
+					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={this.renderRow.bind(this)}
 				/>
+				{spinner}
 			</View>
 		);
 	}

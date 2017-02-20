@@ -31,7 +31,7 @@ export default class ProvinceList extends Component {
 
 
 	render(){
-		var spinner = this.state.isLoading ? (
+		const spinner = this.state.isLoading ? (
 			<ActivityIndicator
 				hidden = 'true'
 				size = 'large'/>) : (<View/>);
