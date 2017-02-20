@@ -19,6 +19,7 @@ export default class ProvinceList extends Component {
 
 	constructor(props){
 		super(props);
+		this.URL = "http://guolin.tech/api/china";
 		const ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1 !== r2)});
 		this.state = {
 			isLoading : true,
@@ -61,8 +62,8 @@ export default class ProvinceList extends Component {
 	}
 
 	_executeQuery(){
-		var URL = "http://guolin.tech/api/china";
-		fetch(URL)
+		
+		fetch(this.URL)
 		.then(response => response.json())
 		.then((json) =>{
 			//json 是数组
@@ -84,20 +85,20 @@ export default class ProvinceList extends Component {
 			<TouchableHighlight
 				onPress={()=> this.rowPressed(rowData, sectionID, rowID)}
 				underlayColor='#dddddd'>
-			<View>
-				<View style={styles.rowContainer}>
-					<View style={styles.textContainer}>
-						<Text style={styles.id}>
-							{rowData.id}
-						</Text>
-						<Text style={styles.title}>
-							{rowData.name}
-						</Text>
+				<View>
+					<View style={styles.rowContainer}>
+						<View style={styles.textContainer}>
+							<Text style={styles.id}>
+								{rowData.id}
+							</Text>
+							<Text style={styles.title}>
+								{rowData.name}
+							</Text>
+						</View>
 					</View>
+					<View style={styles.separator}/>
 				</View>
-				<View style={styles.separator}/>
-			</View>
-		</TouchableHighlight>
+			</TouchableHighlight>
 		);
 	}
 	
@@ -113,6 +114,7 @@ export default class ProvinceList extends Component {
 					rowID: rowID,
 					provinceName:rowData.name,
 					provinceId:rowData.id,
+					url:this.URL,
 				}
 			});
 		}

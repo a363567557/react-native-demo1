@@ -8,15 +8,15 @@ import {
     TouchableHighlight
 } from 'react-native';
 
-import CityList2 from './city_list2';
+import Weather from './weather';
 import {NavigatormaperStyle} from './style/NavigatormaperStyle';
 import styles from './style/CommonStyle';
 
-export default class CityList extends React.Component {
+export default class CityList2 extends React.Component {
 	
 	constructor(props){
 		super(props);
-		this.URL = props.url+'/'+props.provinceId;
+		this.URL = props.url+'/'+props.cityId;
 		this.ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1!==r2)});
 		this.state={
 			isLoading:true,
@@ -55,15 +55,15 @@ export default class CityList extends React.Component {
 		let navigator = this.props.navigator;
 		if(navigator){
 			navigator.push({
-				name:CityList2+'',
-				component:CityList2,
+				name:Weather+'',
+				component:Weather,
 				params:{
 					rowData:rowData,
 					sectionID:sectionID,
 					rowID:rowID,
 					cityName:rowData.name,
 					cityId:rowData.id,
-					url:this.URL,
+					weatherId:rowData.weather_id,
 				}
 			})
 		}
@@ -77,7 +77,7 @@ export default class CityList extends React.Component {
 		    				<Text>left</Text>
 		    			</TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.title}>
-					    	<Text>{this.props.provinceName}</Text>
+					    	<Text>{this.props.cityName}</Text>
 					    </TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.rightButton}>
 						    <Text>right</Text>
