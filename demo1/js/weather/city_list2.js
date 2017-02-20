@@ -1,21 +1,21 @@
 import React from 'react';
 import {
-    View,
-    Navigator,
-    TouchableOpacity,
-    Text,
-    ListView,
-    TouchableHighlight,
-    ActivityIndicator
+	Navigator,
+	Text,
+	View,
+	TouchableOpacity,
+	TouchableHighlight,
+	ActivityIndicator,
+	ListView
 } from 'react-native';
 
 import Weather from './weather';
 import {NavigatormaperStyle} from './style/NavigatormaperStyle';
 import styles from './style/CommonStyle';
 import WeatherAPI from './api/WeatherAPI';
+import WeatherBaseComponent from './base/WeatherBaseComponent';
 
-
-export default class CityList2 extends React.Component {
+export default class CityList2 extends WeatherBaseComponent {
 	
 	constructor(props){
 		super(props);

@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-	AppRegistry,
-	StyleSheet,
+	Navigator,
 	Text,
 	View,
-	Navigator,
 	TouchableOpacity,
 	TouchableHighlight,
 	ActivityIndicator,
@@ -12,16 +10,15 @@ import {
 } from 'react-native';
 
 import CityList from './city_list';
-//把样式抽离，独立成为一个文件
 import styles from './style/CommonStyle';
 import WeatherAPI from './api/WeatherAPI';
+import WeatherBaseComponent from './base/WeatherBaseComponent';
 
-export default class ProvinceList extends Component {
+export default class ProvinceList extends WeatherBaseComponent {
 
 	constructor(props){
 		super(props);
 		this.weatherAPI = new WeatherAPI();
-		this.URL = "http://guolin.tech/api/china";
 		const ds = new ListView.DataSource({rowHasChanged:(r1,r2)=>(r1 !== r2)});
 		this.state = {
 			isLoading : true,
@@ -50,6 +47,7 @@ export default class ProvinceList extends Component {
 
   //通过这个方法，执行耗时操作
 	componentDidMount(){
+		super.componentDidMount();
 		this._executeQuery();
 	}
 

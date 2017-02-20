@@ -1,21 +1,21 @@
 import React from 'react';
 import {
-    View,
-    Navigator,
-    TouchableOpacity,
-    Text,
-    ListView,
-    TouchableHighlight,
-    ActivityIndicator
+	Navigator,
+	Text,
+	View,
+	TouchableOpacity,
+	TouchableHighlight,
+	ActivityIndicator,
+	ListView
 } from 'react-native';
 
 import CityList2 from './city_list2';
 import {NavigatormaperStyle} from './style/NavigatormaperStyle';
 import styles from './style/CommonStyle';
 import WeatherAPI from './api/WeatherAPI';
+import WeatherBaseComponent from './base/WeatherBaseComponent';
 
-
-export default class CityList extends React.Component {
+export default class CityList extends WeatherBaseComponent {
 	
 	constructor(props){
 		super(props);
@@ -29,6 +29,7 @@ export default class CityList extends React.Component {
 			
 	//界面挂载完成回调
 	componentDidMount(){
+		super.componentDidMount();
 		this.getCityListData.bind(this)();
 	}
 	
