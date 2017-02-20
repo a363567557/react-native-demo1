@@ -13,7 +13,7 @@ import {
   Navigator
 } from 'react-native';
 
-import ProvinceList from './js/weather/province_list';
+import ProvinceList from './js/weather/view/province_list';
 
 export default class demo1 extends Component {
   render() {
