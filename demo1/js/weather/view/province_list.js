@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 
 import CityList from './city_list';
-import styles from './style/CommonStyle';
-import WeatherAPI from './api/WeatherAPI';
-import WeatherBaseComponent from './base/WeatherBaseComponent';
+import styles from '../style/CommonStyle';
+import WeatherAPI from '../api/WeatherAPI';
+import WeatherBaseComponent from '../base/WeatherBaseComponent';
 
 export default class ProvinceList extends WeatherBaseComponent {
 

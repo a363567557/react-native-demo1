@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 
 import CityList2 from './city_list2';
-import {NavigatormaperStyle} from './style/NavigatormaperStyle';
-import styles from './style/CommonStyle';
-import WeatherAPI from './api/WeatherAPI';
-import WeatherBaseComponent from './base/WeatherBaseComponent';
+import {NavigatormaperStyle} from '../style/NavigatormaperStyle';
+import styles from '../style/CommonStyle';
+import WeatherAPI from '../api/WeatherAPI';
+import WeatherBaseComponent from '../base/WeatherBaseComponent';
 
 export default class CityList extends WeatherBaseComponent {
 

@@ -1,3 +1,5 @@
+//天气demo控件入口
+
 import React from 'react';
 import {
 	Navigator,
@@ -9,9 +11,9 @@ import {
 	ListView
 } from 'react-native';
 
-import {NavigatormaperStyle} from './style/NavigatormaperStyle';
-import WeatherAPI from './api/WeatherAPI';
-import WeatherBaseComponent from './base/WeatherBaseComponent';
+import {NavigatormaperStyle} from '../style/NavigatormaperStyle';
+import WeatherAPI from '../api/WeatherAPI';
+import WeatherBaseComponent from '../base/WeatherBaseComponent';
 
 
 export default class Weather extends WeatherBaseComponent {
