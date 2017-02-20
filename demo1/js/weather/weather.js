@@ -29,18 +29,18 @@ export default class Weather extends WeatherBaseComponent {
 		const spinner = this.state.isLoading ? (
 					<ActivityIndicator
 						hidden = 'true'
-						size = 'large'/>) : (<View/>);	
+						size = 'large'/>) : (<View/>);
 		return(
 			<View>
 				<View style={NavigatormaperStyle.container}>
-		    			<TouchableHighlight style={NavigatormaperStyle.leftButton} onPress={this.onLeftOnClick.bind(this)}>
-		    				<Text>left</Text>
+		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
+		    				<Text style={NavigatormaperStyle.leftButton}>left</Text>
 		    			</TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.title}>
-					    	<Text>{this.props.cityName}</Text>
+					    <TouchableHighlight style={NavigatormaperStyle.center}>
+					    	<Text style={NavigatormaperStyle.title}>{this.props.cityName}</Text>
 					    </TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.rightButton}>
-						    <Text>right</Text>
+					    <TouchableHighlight style={NavigatormaperStyle.right}>
+						    <Text style={NavigatormaperStyle.rightButton}>right</Text>
 						</TouchableHighlight>
 		    	</View>
 		    	<Text>{this.state.weather}</Text>
@@ -61,7 +61,7 @@ export default class Weather extends WeatherBaseComponent {
 	}
 
 	getWeather() {
-		
+
 		this.weatherAPI.getWeather(this.props.weatherId,(json)=>{
 			let weather = json.HeWeather[0];
 				if(weather.status == 'ok'){//请求到天气数据

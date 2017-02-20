@@ -16,7 +16,7 @@ import WeatherAPI from './api/WeatherAPI';
 import WeatherBaseComponent from './base/WeatherBaseComponent';
 
 export default class CityList extends WeatherBaseComponent {
-	
+
 	constructor(props){
 		super(props);
 		this.weatherAPI = new WeatherAPI();
@@ -26,13 +26,13 @@ export default class CityList extends WeatherBaseComponent {
 			dataSource:this.ds.cloneWithRows(this.getRows()),
 		};
 	}
-			
+
 	//界面挂载完成回调
 	componentDidMount(){
 		super.componentDidMount();
 		this.getCityListData.bind(this)();
 	}
-	
+
 	//获取城市列表数据
 	getCityListData(){
 		this.weatherAPI.getCity(this.props.provinceId,(json)=>{
@@ -43,15 +43,15 @@ export default class CityList extends WeatherBaseComponent {
 			})
 		});
 	}
-	
-	
+
+
 	getRows(){
 		const dataBlob = [];
 		return dataBlob;
 	}
 
-	
-	
+
+
 	onPress(rowData,sectionID,rowID){
 		let navigator = this.props.navigator;
 		if(navigator){
@@ -70,31 +70,31 @@ export default class CityList extends WeatherBaseComponent {
 			})
 		}
 	}
-	
+
 	render(){
-		
+
 		const spinner = this.state.isLoading ? (
 			<ActivityIndicator
 				hidden = 'true'
 				size = 'large'/>) : (<View/>);
-		
+
 		return(
 			<View>
-				<View 
+				<View
 					style={NavigatormaperStyle.container}
 					hidden = {!this.state.isLoading}
 					>
-		    			<TouchableHighlight style={NavigatormaperStyle.leftButton} onPress={this.onLeftOnClick.bind(this)}>
-		    				<Text>left</Text>
+		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
+		    				<Text style={NavigatormaperStyle.leftButton}>left</Text>
 		    			</TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.title}>
-					    	<Text>{this.props.provinceName}</Text>
+					    <TouchableHighlight style={NavigatormaperStyle.center}>
+					    	<Text style={NavigatormaperStyle.title}>{this.props.provinceName}</Text>
 					    </TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.rightButton}>
-						    <Text>right</Text>
+					    <TouchableHighlight style={NavigatormaperStyle.right}>
+						    <Text style={NavigatormaperStyle.rightButton}>right</Text>
 						</TouchableHighlight>
 		    	</View>
-				<ListView 
+				<ListView
 					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={this.renderRow.bind(this)}
@@ -103,7 +103,7 @@ export default class CityList extends WeatherBaseComponent {
 			</View>
 		);
 	}
-	
+
 	renderRow(rowData,sectionID,rowID){
 		return(
 			<TouchableHighlight
@@ -125,11 +125,11 @@ export default class CityList extends WeatherBaseComponent {
 			</TouchableHighlight>
 		);
 	}
-	
+
 	onLeftOnClick(){
 		this.onBack();
 	}
-	
+
 	onBack(){
 		let navigator = this.props.navigator;
 		if(navigator){
