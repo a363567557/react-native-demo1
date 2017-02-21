@@ -19,7 +19,7 @@ export default class WeatherAPI{
 		//json 是数组
 		//json item 结构{id:123,name:abc}
 		let url = WeatherAPI.BASE_URL + "/china";
-		return this.fetchData('http://guolin.tech/api/china',callBack);
+		return this.fetchData(url,callBack);
 	}
 	
 	//一级城市
