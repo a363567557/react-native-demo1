@@ -61,7 +61,7 @@ export default class WeatherBaseComponent extends React.Component {
 			return true;
 		}
 		// 当前页面为root页面时的处理  
-		if(this.lastBackPressed && (this.lastBackPressed + 500 >= Date.now())) {
+		if(this.lastBackPressed && (this.lastBackPressed + 800 >= Date.now())) {
 			//最近2秒内按过back键，可以退出应用。  
 //			NativeModules.CommonTools.onBackPressed();
 			return false;
