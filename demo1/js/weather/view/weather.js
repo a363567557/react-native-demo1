@@ -18,7 +18,7 @@ import WeatherAPI from '../api/WeatherAPI';
 import WeatherBaseComponent from '../base/WeatherBaseComponent';
 import CommonStyle from '../style/CommonStyle';
 import WeatherTop from '../view/weatherTop';
-let weatherData = require('../base/BaseWeatherData.json');
+// import DailyForeCast from '../view/dailyForeCast';
 
 export default class Weather extends WeatherBaseComponent {
 
@@ -28,7 +28,7 @@ export default class Weather extends WeatherBaseComponent {
 		this.weatherAPI = new WeatherAPI();
 		this.state = {
 			isLoading: true,
-			back_image: '',
+			back_image: 'http://www.baidu.com',
 			weather: null,
 			basic: null,
 			nowWeather: null,
@@ -44,7 +44,7 @@ export default class Weather extends WeatherBaseComponent {
 						hidden = 'true'
 						size = 'large'/>) : (<View/>);
 		return(
-			<Image style={CommonStyle.back_image} source={{uri: 'http://cn.bing.com/az/hprichbg/rb/YorkshireWinter_ZH-CN9258658675_1920x1080.jpg'}}>
+			<Image style={CommonStyle.back_image} source={{uri : this.state.back_image}}>
 				<View style={NavigatormaperStyle.container}>
 		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
 		    				<Text style={NavigatormaperStyle.leftButton}>left</Text>
@@ -58,10 +58,7 @@ export default class Weather extends WeatherBaseComponent {
 		    	</View>
 		    	<ScrollView>
 						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+
 		    	</ScrollView>
 		    	{spinner}
 				</Image>
@@ -78,6 +75,14 @@ export default class Weather extends WeatherBaseComponent {
 		if(navigator) {
 			navigator.pop();
 		}
+	}
+
+	getBackgroundPic(){
+		this.weatherAPI.getBackgroundPic((response) =>{
+			this.setState({
+				back_image : response._bodyText,
+			})
+		});
 	}
 
 	getWeather() {
@@ -100,6 +105,7 @@ export default class Weather extends WeatherBaseComponent {
 	}
 
 	componentWillMount() {
+		this.getBackgroundPic.bind(this)();
 		this.getWeather.bind(this)();
 	}
 }

@@ -13,6 +13,7 @@ class weatherTop extends Component{
   }
   render(){
 		var show = (this.props.basic !== null);
+		//内容展示
 		const content = show ? (
 	       <View style={WeatherTopStyle.container}>
 					 <View style={WeatherTopStyle.cityAndTimeContainer}>

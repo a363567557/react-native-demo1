@@ -10,8 +10,18 @@ export default class WeatherAPI{
 	  			callBack(json);
 	  		})
 	  		.catch(function(error){
-			    console.log("error = " + error);
+			    console.error("error = " + error);
 			  	})
+	}
+
+	fetchRaw(url, callBack){
+		fetch(url)
+		.then((response)=>{
+			callBack(response);
+		})
+		.catch(function(error){
+			console.error("error = " + error);
+		})
 	}
 
 	//省份数据
@@ -40,8 +50,9 @@ export default class WeatherAPI{
 		return this.fetchData(url,callBack);
 	}
 
+	//获取每日一图链接
 	getBackgroundPic(callBack){
-		return this.fetchData(BACKGROUND_IMAGE, callBack);
+		return this.fetchRaw("http://guolin.tech/api/bing_pic", callBack);
 	}
 }
 
