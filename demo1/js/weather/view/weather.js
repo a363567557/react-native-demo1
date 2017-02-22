@@ -43,6 +43,14 @@ export default class Weather extends WeatherBaseComponent {
 					<ActivityIndicator
 						hidden = 'true'
 						size = 'large'/>) : (<View/>);
+
+		const content = (this.state.weather !== null) ? (
+			<ScrollView>
+				<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+				<DailyForeCast daily_forecast={this.state.daily_forecast}/>
+			</ScrollView>
+		) : (<View/>)
+
 		return(
 			<Image style={CommonStyle.back_image} source={{uri : this.state.back_image}}>
 				<View style={NavigatormaperStyle.container}>
@@ -56,11 +64,7 @@ export default class Weather extends WeatherBaseComponent {
 						    <Text style={NavigatormaperStyle.rightButton}>right</Text>
 						</TouchableHighlight>
 		    	</View>
-		    	<ScrollView>
-						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-						<DailyForeCast daily_forecast={this.state.daily_forecast}/>
-						
-		    	</ScrollView>
+		    	{content}
 		    	{spinner}
 				</Image>
 

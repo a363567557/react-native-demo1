@@ -5,7 +5,7 @@ import {
 
 var Dimensions = require("Dimensions");
 
-var CommonStyle = StyleSheet.create({
+var CommonStyle =  StyleSheet.create({
   textContainer: {
 	 flex: 1,
  },

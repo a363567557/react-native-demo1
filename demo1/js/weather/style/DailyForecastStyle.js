@@ -12,12 +12,16 @@ var DailyForecastStyle = StyleSheet.create({
     // width: Dimensions.get('window').width,
     backgroundColor: '#aaaabbcc',
   },
+  title: {
+    fontSize: 20,
+    color: '#fff',
+  },
   rowContainer: {
     flexDirection: 'row',
     flex: 1,
     // width: Dimensions.get('window').width,
-    paddingTop: 12,
-    paddingBottom: 12,
+    paddingTop: 4,
+    paddingBottom: 4,
   },
   date: {
     flex: 2,
