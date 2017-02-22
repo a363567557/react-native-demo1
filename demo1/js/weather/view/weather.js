@@ -17,8 +17,8 @@ import {NavigatormaperStyle} from '../style/NavigatormaperStyle';
 import WeatherAPI from '../api/WeatherAPI';
 import WeatherBaseComponent from '../base/WeatherBaseComponent';
 import CommonStyle from '../style/CommonStyle';
-import WeatherTop from '../view/weatherTop';
-// import DailyForeCast from '../view/dailyForeCast';
+import WeatherTop from '../view/weather_top';
+import DailyForeCast from '../view/daily_forecast';
 
 export default class Weather extends WeatherBaseComponent {
 
@@ -58,7 +58,8 @@ export default class Weather extends WeatherBaseComponent {
 		    	</View>
 		    	<ScrollView>
 						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-
+						<DailyForeCast daily_forecast={this.state.daily_forecast}/>
+						
 		    	</ScrollView>
 		    	{spinner}
 				</Image>
