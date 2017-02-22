@@ -46,7 +46,7 @@ export default class ProvinceList extends WeatherBaseComponent {
 	}
 
   //通过这个方法，执行耗时操作
-	componentDidMount(){
+	componentWillMount(){
 		super.componentDidMount();
 		this._executeQuery();
 	}
@@ -91,7 +91,7 @@ export default class ProvinceList extends WeatherBaseComponent {
 			</TouchableHighlight>
 		);
 	}
-	
+
 	rowPressed(rowData, sectionID, rowID) {
 		const { navigator } = this.props;
 		if(navigator) {

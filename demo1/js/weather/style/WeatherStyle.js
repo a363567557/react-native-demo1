@@ -27,6 +27,10 @@ var WeatherStyle = StyleSheet.create({
 	 flexDirection: 'row',
 	 padding: 10,
  },
+ image: {
+   width: 300,
+   height: 400,
+ },
 });
 
 module.exports = WeatherStyle;

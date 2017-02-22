@@ -28,8 +28,9 @@ export default class CityList2 extends WeatherBaseComponent {
 	}
 
 	//界面挂载完成回调
-	componentDidMount(){
+	componentWillMount(){
 		this.getCityListData.bind(this)();
+
 	}
 
 	//获取城市列表数据
@@ -40,6 +41,10 @@ export default class CityList2 extends WeatherBaseComponent {
 				dataSource:this.ds.cloneWithRows(json),
 			})
 		});
+	}
+
+	getBackgroundPic(){
+
 	}
 
 

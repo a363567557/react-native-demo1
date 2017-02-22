@@ -3,11 +3,14 @@ import {
   StyleSheet
 }from 'react-native';
 
-var CommonStyles = StyleSheet.create({
+var Dimensions = require("Dimensions");
+
+var CommonStyle = StyleSheet.create({
   textContainer: {
 	 flex: 1,
  },
  container: {
+   flex: 1,
  },
  separator: {
  height: 1,
@@ -26,6 +29,10 @@ var CommonStyles = StyleSheet.create({
 	 flexDirection: 'row',
 	 padding: 10,
  },
+ back_image: {
+   width: Dimensions.get('window').width,
+   height: Dimensions.get('window').height,
+ },
 });
 
-module.exports = CommonStyles;
+module.exports = CommonStyle;

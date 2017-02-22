@@ -7,6 +7,7 @@ export const NavigatormaperStyle = StyleSheet.create({
 	},
 
 	left: {
+		flex:1,
 		paddingLeft:20,
 		paddingRight:20,
 		backgroundColor: '#48BBEC',
@@ -14,14 +15,16 @@ export const NavigatormaperStyle = StyleSheet.create({
 		justifyContent:'center',
 	},
 	center: {
-		flex:1,
+		flex:3,
 		backgroundColor: '#48BBEC',
 		alignItems:'center',
 		justifyContent:'center',
 	},
 	right: {
+		flex:1,
 		paddingLeft:20,
 		paddingRight:20,
+
 		backgroundColor: '#48BBEC',
 		alignItems:'center',
 		justifyContent:'center',

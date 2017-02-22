@@ -4,6 +4,8 @@ import React from 'react';
 import {
 	Navigator,
 	Text,
+	Image,
+	ScrollView,
 	View,
 	TouchableOpacity,
 	TouchableHighlight,
@@ -14,16 +16,25 @@ import {
 import {NavigatormaperStyle} from '../style/NavigatormaperStyle';
 import WeatherAPI from '../api/WeatherAPI';
 import WeatherBaseComponent from '../base/WeatherBaseComponent';
-
+import CommonStyle from '../style/CommonStyle';
+import WeatherTop from '../view/weatherTop';
+let weatherData = require('../base/BaseWeatherData.json');
 
 export default class Weather extends WeatherBaseComponent {
 
 	constructor(props) {
+
 		super(props);
 		this.weatherAPI = new WeatherAPI();
 		this.state = {
-			isLoading:true,
-			weather: '',
+			isLoading: true,
+			back_image: '',
+			weather: null,
+			basic: null,
+			nowWeather: null,
+			suggestion: null,
+			aqi: null,
+			daily_forecast: null,
 		}
 	}
 
@@ -33,7 +44,7 @@ export default class Weather extends WeatherBaseComponent {
 						hidden = 'true'
 						size = 'large'/>) : (<View/>);
 		return(
-			<View>
+			<Image style={CommonStyle.back_image} source={{uri: 'http://cn.bing.com/az/hprichbg/rb/YorkshireWinter_ZH-CN9258658675_1920x1080.jpg'}}>
 				<View style={NavigatormaperStyle.container}>
 		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
 		    				<Text style={NavigatormaperStyle.leftButton}>left</Text>
@@ -45,9 +56,16 @@ export default class Weather extends WeatherBaseComponent {
 						    <Text style={NavigatormaperStyle.rightButton}>right</Text>
 						</TouchableHighlight>
 		    	</View>
-		    	<Text>{this.state.weather}</Text>
+		    	<ScrollView>
+						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+						<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
+		    	</ScrollView>
 		    	{spinner}
-		    </View>
+				</Image>
+
 		);
 	}
 
@@ -63,21 +81,25 @@ export default class Weather extends WeatherBaseComponent {
 	}
 
 	getWeather() {
-
 		this.weatherAPI.getWeather(this.props.weatherId,(json)=>{
-			let weather = json.HeWeather[0];
-				if(weather.status == 'ok'){//请求到天气数据
-					let weatherInfo = weather.basic.city + '--' + weather.daily_forecast[0].cond.txt_d + '---' + weather.daily_forecast[0].cond.txt_n;
+			let weatherInfo = json.HeWeather[0];
+				if(weatherInfo.status == 'ok'){//请求到天气数据
 					this.setState({
-						isLoading:false,
+						isLoading: false,
 						weather: weatherInfo,
-						//daily_forecast
+						basic: weatherInfo.basic,
+						nowWeather: weatherInfo.now,
+						suggestion: weatherInfo.suggestion,
+						aqi: weatherInfo.aqi,
+						daily_forecast: weatherInfo.daily_forecast,
 					})
+				}else{
+					alert("error");
 				}
 		});
 	}
 
-	componentDidMount() {
+	componentWillMount() {
 		this.getWeather.bind(this)();
 	}
 }
