@@ -1,5 +1,5 @@
 //天气请求api
-
+'use strict';
 export default class WeatherAPI{
 
 	//请求封装
@@ -59,4 +59,3 @@ export default class WeatherAPI{
 WeatherAPI.BASE_URL = 'http://guolin.tech/api';
 WeatherAPI.WEATHER_URL = WeatherAPI.BASE_URL + '/weather';
 WeatherAPI.KEY = '70ae0fa5842b4616b5f1cc8b41c06f4b';
-BACKGROUND_IMAGE = WeatherAPI.BASE_URL + '/bing_pic';

@@ -1,3 +1,4 @@
+'use strict';
 import {StyleSheet} from 'react-native';
 
 export const NavigatormaperStyle = StyleSheet.create({

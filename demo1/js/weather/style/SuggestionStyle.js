@@ -1,11 +1,10 @@
+'use strict';
 import React from 'react';
 import {
   StyleSheet
 }from 'react-native';
 
 var Dimensions = require("Dimensions");
-
-var paddingRight = 12;
 
 var WeatherTopStyle = StyleSheet.create({
     container: {

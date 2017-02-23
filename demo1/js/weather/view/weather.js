@@ -1,5 +1,5 @@
 //天气demo控件入口
-
+'use strict';
 import React from 'react';
 import {
 	Navigator,

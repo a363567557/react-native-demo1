@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import {
   StyleSheet
@@ -62,7 +63,6 @@ var WeatherTopStyle = StyleSheet.create({
     paddingRight: paddingRight,
     textAlign: 'right',
     fontSize: 20,
-    paddingRight: 20,
     color: '#fff',
   },
 });
