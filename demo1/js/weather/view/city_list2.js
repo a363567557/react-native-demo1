@@ -82,13 +82,13 @@ export default class CityList2 extends WeatherBaseComponent {
 			<View>
 				<View style={NavigatormaperStyle.container}>
 		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
-		    				<Text style={NavigatormaperStyle.leftButton}>left</Text>
+		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
 		    			</TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.center}>
 					    	<Text style={NavigatormaperStyle.title}>{this.props.provinceName}--{this.props.cityName}</Text>
 					    </TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.right}>
-						    <Text style={NavigatormaperStyle.rightButton}>right</Text>
+						    <Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
 						</TouchableHighlight>
 		    	</View>
 				<ListView

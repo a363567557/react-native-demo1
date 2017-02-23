@@ -33,7 +33,7 @@ export const NavigatormaperStyle = StyleSheet.create({
 	leftButton:{
 		color: '#fff',
 		fontSize: 20,
-
+		textAlign: 'left',
 	},
 
 	rightButton:{

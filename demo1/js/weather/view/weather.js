@@ -17,8 +17,10 @@ import {NavigatormaperStyle} from '../style/NavigatormaperStyle';
 import WeatherAPI from '../api/WeatherAPI';
 import WeatherBaseComponent from '../base/WeatherBaseComponent';
 import CommonStyle from '../style/CommonStyle';
-import WeatherTop from '../view/weather_top';
-import DailyForeCast from '../view/daily_forecast';
+import WeatherTopComponent from '../view/weather_top';
+import DailyForeCastComponent from '../view/daily_forecast';
+import AirQualityComponent from '../view/air_quality';
+import SuggestionComponent from '../view/suggestion';
 
 export default class Weather extends WeatherBaseComponent {
 
@@ -47,8 +49,10 @@ export default class Weather extends WeatherBaseComponent {
 		//搞个延时加载，有数据的时候，才去渲染界面好了
 		const content = (this.state.weather !== null) ? (
 			<ScrollView>
-				<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
-				<DailyForeCast daily_forecast={this.state.daily_forecast}/>
+				<WeatherTopComponent basic = {this.state.basic} nowWeather={this.state.nowWeather}/>
+				<DailyForeCastComponent daily_forecast = {this.state.daily_forecast}/>
+				<AirQualityComponent aqi = {this.state.aqi} />
+				<SuggestionComponent suggestion = {this.state.suggestion}/>
 			</ScrollView>
 		) : (<View/>)
 
@@ -56,13 +60,13 @@ export default class Weather extends WeatherBaseComponent {
 			<Image style={CommonStyle.back_image} source={{uri : this.state.back_image}}>
 				<View style={NavigatormaperStyle.container}>
 		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
-		    				<Text style={NavigatormaperStyle.leftButton}>left</Text>
+		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
 		    			</TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.center}>
 					    	<Text style={NavigatormaperStyle.title}>{this.props.cityName}</Text>
 					    </TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.right}>
-						    <Text style={NavigatormaperStyle.rightButton}>right</Text>
+						    <Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
 						</TouchableHighlight>
 		    	</View>
 		    	{content}
