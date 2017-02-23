@@ -8,30 +8,30 @@ var Dimensions = require("Dimensions");
 var paddingRight = 12;
 
 var WeatherTopStyle = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    backgroundColor: '#bbaabbbb',
-  },
-  suggestionContainer: {
-    flexDirection: 'column',
+    container: {
+        marginTop: 20,
+        backgroundColor: '#aa78d1dd',
+    },
+    suggestionContainer: {
+        flexDirection: 'column',
 
-  },
-  suggestionTitle: {
-    marginTop: 10,
-    textAlign: 'left',
-    paddingLeft: 16,
-    fontSize: 20,
-    color: '#fff',
-  },
-  content: {
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: 'left',
-    paddingLeft: 16,
-    paddingRight: 16,
-    fontSize: 16,
-    color: '#fff',
-  },
+    },
+    suggestionTitle: {
+        marginTop: 10,
+        textAlign: 'left',
+        paddingLeft: 16,
+        fontSize: 20,
+        color: '#fff',
+    },
+    content: {
+        marginTop: 10,
+        marginBottom: 10,
+        textAlign: 'left',
+        paddingLeft: 16,
+        paddingRight: 16,
+        fontSize: 16,
+        color: '#fff',
+    },
 
 });
 

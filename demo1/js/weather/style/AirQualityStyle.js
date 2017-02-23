@@ -9,8 +9,8 @@ var paddingRight = 12;
 
 var WeatherTopStyle = StyleSheet.create({
   container: {
-    marginTop: 20,
-    backgroundColor: '#bbaabbbb',
+      marginTop: 20,
+      backgroundColor: '#aa78d1dd',
 
   },
   aqiTitle: {

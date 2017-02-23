@@ -10,7 +10,7 @@ var DailyForecastStyle = StyleSheet.create({
     flexDirection: 'column',
 
     // width: Dimensions.get('window').width,
-    backgroundColor: '#bbaabbbb',
+    backgroundColor: '#aa78d1dd',
   },
   title: {
     padding: 10,

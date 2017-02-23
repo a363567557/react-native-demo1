@@ -43,17 +43,10 @@ export default class CityList2 extends WeatherBaseComponent {
 		});
 	}
 
-	getBackgroundPic(){
-
-	}
-
-
 	getRows(){
 		const dataBlob = [];
 		return dataBlob;
 	}
-
-
 
 	onPress(rowData,sectionID,rowID){
 		let navigator = this.props.navigator;
