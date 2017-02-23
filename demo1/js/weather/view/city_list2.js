@@ -65,7 +65,7 @@ export default class CityList2 extends WeatherBaseComponent {
 					rowData:rowData,
 					sectionID:sectionID,
 					rowID:rowID,
-					cityName:rowData.name,
+					cityName: '天气详情',
 					cityId:rowData.id,
 					weatherId:rowData.weather_id,
 				}

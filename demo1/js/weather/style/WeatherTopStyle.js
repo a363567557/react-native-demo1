@@ -5,12 +5,14 @@ import {
 
 var Dimensions = require("Dimensions");
 
+var paddingRight = 12;
+
 var WeatherTopStyle = StyleSheet.create({
   container: {
     flexDirection: 'column',
     height: 150,
     // width: Dimensions.get('window').width,
-    backgroundColor: '#aaaabbcc',
+    // backgroundColor: '#aaaabbcc',
   },
   cityAndTimeContainer: {
     flexDirection: 'row',
@@ -31,10 +33,11 @@ var WeatherTopStyle = StyleSheet.create({
     color: '#fff',
   },
   updateTime: {
-    textAlign: 'center',
+    textAlign: 'right',
+    paddingRight: paddingRight,
     width: 100,
     fontSize: 16,
-    alignItems:'center',
+    // alignItems:'center',
     color: '#fff',
   },
   temperatureContainer: {
@@ -44,9 +47,9 @@ var WeatherTopStyle = StyleSheet.create({
     alignItems: 'center',
   },
   temperature: {
-    textAlign: 'center',
+    textAlign: 'right',
+    paddingRight: paddingRight,
     fontSize: 35,
-    paddingRight: 20,
     color: '#fff',
   },
   weatherInfoContainer: {
@@ -56,7 +59,8 @@ var WeatherTopStyle = StyleSheet.create({
     alignItems: 'center',
   },
   weatherInfoStyle: {
-    textAlign: 'center',
+    paddingRight: paddingRight,
+    textAlign: 'right',
     fontSize: 20,
     paddingRight: 20,
     color: '#fff',

@@ -29,7 +29,7 @@ class dailyForeCast extends Component{
       var show = (this.props.daily_forecast !== null);
       //内容展示
       const content = show ? (
-        <View>
+        <View style={DailyForecastStyle.container}>
           <Text style={DailyForecastStyle.title}>
             预报
           </Text>
@@ -58,7 +58,7 @@ class dailyForeCast extends Component{
     //渲染item
     renderRow(rowData,sectionID,rowID){
       return(
-          <View style={DailyForecastStyle.container}>
+          <View style={DailyForecastStyle.rowContainer}>
             <Text style={DailyForecastStyle.date}>
               {rowData.date}
             </Text>
