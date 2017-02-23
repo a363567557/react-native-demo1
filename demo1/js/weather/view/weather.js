@@ -44,6 +44,7 @@ export default class Weather extends WeatherBaseComponent {
 						hidden = 'true'
 						size = 'large'/>) : (<View/>);
 
+		//搞个延时加载，有数据的时候，才去渲染界面好了
 		const content = (this.state.weather !== null) ? (
 			<ScrollView>
 				<WeatherTop basic={this.state.basic} nowWeather={this.state.nowWeather}/>
