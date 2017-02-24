@@ -115,6 +115,10 @@ export default class Weather extends WeatherBaseComponent {
 	}
 
 	componentWillMount() {
+		super.componentWillMount(this._getData.bind(this));
+	}
+	
+	_getData(){
 		this.getBackgroundPic.bind(this)();
 		this.getWeather.bind(this)();
 	}

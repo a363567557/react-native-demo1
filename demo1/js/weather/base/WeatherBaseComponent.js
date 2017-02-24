@@ -12,13 +12,15 @@ import {
 	TouchableOpacity,
 	TouchableHighlight,
 	ActivityIndicator,
-	ListView
+	ListView,
+	InteractionManager
 } from 'react-native';
 
 export default class WeatherBaseComponent extends React.Component {
 
-	componentDidMount() {
+	componentWillMount(fn) {
 		this.addBackAndroidListener();
+		this.componentWillMountCallBack(fn);
 	}
 
 	componentWillUnmount() {
@@ -79,5 +81,9 @@ export default class WeatherBaseComponent extends React.Component {
 			let lastRoute = routes[routes.length - 1]; // 当前页面对应的route对象  
 			lastRoute.handleBack = handleBack;
 		}
+	}
+	
+	componentWillMountCallBack(fn){
+		InteractionManager.runAfterInteractions(fn);
 	}
 }

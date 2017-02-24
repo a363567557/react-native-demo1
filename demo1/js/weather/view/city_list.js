@@ -30,8 +30,7 @@ export default class CityList extends WeatherBaseComponent {
 
 	//界面挂载完成回调
 	componentWillMount(){
-		super.componentDidMount();
-		this.getCityListData.bind(this)();
+		super.componentWillMount(this.getCityListData.bind(this));
 	}
 
 	//获取城市列表数据

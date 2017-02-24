@@ -48,8 +48,7 @@ export default class ProvinceList extends WeatherBaseComponent {
 
   //通过这个方法，执行耗时操作
 	componentWillMount(){
-		super.componentDidMount();
-		this._executeQuery();
+		super.componentWillMount(this._executeQuery.bind(this));
 	}
 
 	_getRowsStatic(){
