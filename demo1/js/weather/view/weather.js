@@ -7,6 +7,7 @@ import {
 	Image,
 	ScrollView,
 	View,
+	RefreshControl,
 	TouchableOpacity,
 	TouchableHighlight,
 	ActivityIndicator,
@@ -48,7 +49,15 @@ export default class Weather extends WeatherBaseComponent {
 
 		//搞个延时加载，有数据的时候，才去渲染界面好了
 		const content = (this.state.weather !== null) ? (
-			<ScrollView>
+			<ScrollView
+				  refreshControl={
+						<RefreshControl
+							refreshing={this.state.isLoading}
+							onRefresh={this.getWeather.bind(this)}
+							tintColor='red'
+							title = {this.state.isLoading ? '刷新中....' : '下拉刷新'}
+							/>
+						}>
 				<WeatherTopComponent basic = {this.state.basic} nowWeather={this.state.nowWeather}/>
 				<DailyForeCastComponent daily_forecast = {this.state.daily_forecast}/>
 				<AirQualityComponent aqi = {this.state.aqi} />
@@ -117,7 +126,7 @@ export default class Weather extends WeatherBaseComponent {
 	componentWillMount() {
 		super.componentWillMount(this._getData.bind(this));
 	}
-	
+
 	_getData(){
 		this.getBackgroundPic.bind(this)();
 		this.getWeather.bind(this)();

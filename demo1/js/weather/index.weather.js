@@ -14,7 +14,8 @@ export default class WeatherComponent extends React.Component {
 	render(){
 		let defaultComponent = ProvinceList;
 		let defaultName = defaultComponent+'';
-		return(<Navigator
+		return(
+			<Navigator
 				initialRoute={{name:defaultName,component:defaultComponent}}
 
 				configureScene={(route)=>{
@@ -22,9 +23,12 @@ export default class WeatherComponent extends React.Component {
 				}}
 
 				renderScene={(route,navigator)=>{
-						let Component = route.component;
-						return <Component {...route.params} navigator={navigator} />
+					let Component = route.component;
+					return <Component
+						{...route.params}
+						navigator={navigator} />
 				}}
-			/>);
+				/>
+		);
 	}
 }

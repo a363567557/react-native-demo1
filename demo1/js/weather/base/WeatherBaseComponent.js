@@ -27,7 +27,7 @@ export default class WeatherBaseComponent extends React.Component {
 		this.removeBackAndroidListener();
 	}
 
-	// 监听返回键事件  
+	// 监听返回键事件
 	addBackAndroidListener() {
 		if(Platform.OS === 'android') {
 			BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -36,36 +36,36 @@ export default class WeatherBaseComponent extends React.Component {
 		}
 	}
 
-	// 移除监听  
+	// 移除监听
 	removeBackAndroidListener() {
 		if(Platform.OS === 'android') {
 			BackAndroid.removeEventListener('hardwareBackPress', () => {});
 		}
 	}
 
-	// 判断是返回上一页还是退出程序  
+	// 判断是返回上一页还是退出程序
 	onBackAndroid(navigator) {
 		if(!navigator) return false;
 		const routers = navigator.getCurrentRoutes();
-		// 当前页面不为root页面时的处理  
+		// 当前页面不为root页面时的处理
 		if(routers.length > 1) {
 			const top = routers[routers.length - 1];
 			if(top.ignoreBack || top.component.ignoreBack) {
-				// 路由或组件上决定这个界面忽略back键  
+				// 路由或组件上决定这个界面忽略back键
 				return true;
 			}
 			const handleBack = top.handleBack || top.component.handleBack;
 			if(handleBack) {
-				// 路由或组件上决定这个界面自行处理back键  
+				// 路由或组件上决定这个界面自行处理back键
 				return handleBack();
 			}
-			// 默认行为： 退出当前界面。  
+			// 默认行为： 退出当前界面。
 			navigator.pop();
 			return true;
 		}
-		// 当前页面为root页面时的处理  
-		if(this.lastBackPressed && (this.lastBackPressed + 800 >= Date.now())) {
-			//最近2秒内按过back键，可以退出应用。  
+		// 当前页面为root页面时的处理
+		if(this.lastBackPressed && (this.lastBackPressed + 2000 >= Date.now())) {
+			//最近2秒内按过back键，可以退出应用。
 //			NativeModules.CommonTools.onBackPressed();
 			return false;
 		}
@@ -74,15 +74,15 @@ export default class WeatherBaseComponent extends React.Component {
 		return true;
 	}
 
-	// 自定义返回按钮事件  
+	// 自定义返回按钮事件
 	customHandleBack(navigator, handleBack) {
 		if(navigator) {
-			let routes = navigator.getCurrentRoutes(); //nav是导航器对象  
-			let lastRoute = routes[routes.length - 1]; // 当前页面对应的route对象  
+			let routes = navigator.getCurrentRoutes(); //nav是导航器对象
+			let lastRoute = routes[routes.length - 1]; // 当前页面对应的route对象
 			lastRoute.handleBack = handleBack;
 		}
 	}
-	
+
 	componentWillMountCallBack(fn){
 		InteractionManager.runAfterInteractions(fn);
 	}
