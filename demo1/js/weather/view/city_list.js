@@ -75,31 +75,52 @@ export default class CityList extends WeatherBaseComponent {
 
 		const spinner = this.state.isLoading ? (
 			<ActivityIndicator
+				style = {styles.loading}
 				hidden = 'true'
-				size = 'large'/>) : (<View/>);
+				size = 'large'/>
+		) : (
+			<View/>
+		);
 
 		return(
-			<View>
+			<View style={styles.container}>
+
 				<View
 					style={NavigatormaperStyle.container}
-					hidden = {!this.state.isLoading}
-					>
-		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
-		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
-		    			</TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.center}>
-					    	<Text style={NavigatormaperStyle.title}>{this.props.provinceName}</Text>
-					    </TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.right}>
-						    <Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
-						</TouchableHighlight>
-		    	</View>
+					hidden = {!this.state.isLoading}>
+
+					<TouchableHighlight
+						style={NavigatormaperStyle.left}
+						onPress={this.onLeftOnClick.bind(this)}>
+
+						<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
+
+					</TouchableHighlight>
+
+					<TouchableHighlight style={NavigatormaperStyle.center}>
+
+						<Text style={NavigatormaperStyle.title}>
+							{this.props.provinceName}
+						</Text>
+
+					</TouchableHighlight>
+
+					<TouchableHighlight style={NavigatormaperStyle.right}>
+
+						<Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
+
+					</TouchableHighlight>
+
+				</View>
+
+				{spinner}
+
 				<ListView
 					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={this.renderRow.bind(this)}
-				/>
-				{spinner}
+					/>
+
 			</View>
 		);
 	}
@@ -109,19 +130,31 @@ export default class CityList extends WeatherBaseComponent {
 			<TouchableHighlight
 				onPress={this.onPress.bind(this,rowData,sectionID,rowID)}
 				underlayColor='#dddddd'>
+
 				<View>
+
 					<View style={styles.rowContainer}>
+
 						<View style={styles.textContainer}>
+
 							<Text style={styles.id}>
 								{rowData.id}
+
 							</Text>
+
 							<Text style={styles.title}>
 								{rowData.name}
+
 							</Text>
+
 						</View>
+
 					</View>
+
 					<View style={styles.separator}/>
+
 				</View>
+
 			</TouchableHighlight>
 		);
 	}

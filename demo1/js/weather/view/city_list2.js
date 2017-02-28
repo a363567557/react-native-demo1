@@ -69,10 +69,11 @@ export default class CityList2 extends WeatherBaseComponent {
 	render(){
 		const spinner = this.state.isLoading ? (
 					<ActivityIndicator
+						style = {styles.loading}
 						hidden = 'true'
 						size = 'large'/>) : (<View/>);
 		return(
-			<View>
+			<View style={styles.container}>
 				<View style={NavigatormaperStyle.container}>
 		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
 		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
@@ -84,12 +85,13 @@ export default class CityList2 extends WeatherBaseComponent {
 						    <Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
 						</TouchableHighlight>
 		    	</View>
+					{spinner}
 				<ListView
 					enableEmptySections={true}
 					dataSource={this.state.dataSource}
 					renderRow={this.renderRow.bind(this)}
 				/>
-				{spinner}
+
 			</View>
 		);
 	}

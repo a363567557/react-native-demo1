@@ -31,16 +31,17 @@ export default class ProvinceList extends WeatherBaseComponent {
 	render(){
 		const spinner = this.state.isLoading ? (
 			<ActivityIndicator
+				style = {styles.loading}
 				hidden = 'true'
 				size = 'large'/>) : (<View/>);
 		return(
 			<View style={styles.container}>
+				{spinner}
 				<ListView
 					dataSource={this.state.dataSource}
 					enableEmptySections={true}
 					renderRow={this._renderRow.bind(this)}
 				/>
-			{spinner}
 		</View>
 
 		);

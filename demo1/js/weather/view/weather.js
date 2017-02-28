@@ -18,6 +18,7 @@ import {NavigatormaperStyle} from '../style/NavigatormaperStyle';
 import WeatherAPI from '../api/WeatherAPI';
 import WeatherBaseComponent from '../base/WeatherBaseComponent';
 import CommonStyle from '../style/CommonStyle';
+import styles from '../style/CommonStyle';
 import WeatherTopComponent from '../view/weather_top';
 import DailyForeCastComponent from '../view/daily_forecast';
 import AirQualityComponent from '../view/air_quality';
@@ -44,6 +45,7 @@ export default class Weather extends WeatherBaseComponent {
 	render() {
 		const spinner = this.state.isLoading ? (
 					<ActivityIndicator
+						style = {styles.loading}
 						hidden = 'true'
 						size = 'large'/>) : (<View/>);
 

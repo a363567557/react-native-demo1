@@ -13,6 +13,10 @@ var CommonStyle =  StyleSheet.create({
  container: {
    flex: 1,
  },
+ loading: {
+   flex: 10,
+
+ },
  separator: {
  height: 1,
  backgroundColor: "#dddddd",
