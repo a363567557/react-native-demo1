@@ -91,6 +91,7 @@ export default class CityList extends WeatherBaseComponent {
 
 					<TouchableHighlight
 						style={NavigatormaperStyle.left}
+						underlayColor= '#48BBFF'
 						onPress={this.onLeftOnClick.bind(this)}>
 
 						<Text style={NavigatormaperStyle.leftButton}>BACK</Text>

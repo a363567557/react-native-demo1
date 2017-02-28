@@ -70,7 +70,9 @@ export default class Weather extends WeatherBaseComponent {
 		return(
 			<Image style={CommonStyle.back_image} source={{uri : this.state.back_image}}>
 				<View style={NavigatormaperStyle.container}>
-		    			<TouchableHighlight style={NavigatormaperStyle.left} onPress={this.onLeftOnClick.bind(this)}>
+		    			<TouchableHighlight style={NavigatormaperStyle.left}
+								underlayColor= '#48BBFF'
+								onPress={this.onLeftOnClick.bind(this)}>
 		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
 		    			</TouchableHighlight>
 					    <TouchableHighlight style={NavigatormaperStyle.center}>

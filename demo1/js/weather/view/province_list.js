@@ -42,6 +42,7 @@ export default class ProvinceList extends WeatherBaseComponent {
 					enableEmptySections={true}
 					renderRow={this._renderRow.bind(this)}
 				/>
+
 		</View>
 
 		);

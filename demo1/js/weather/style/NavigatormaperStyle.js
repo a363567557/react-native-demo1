@@ -4,13 +4,14 @@ import {StyleSheet} from 'react-native';
 export const NavigatormaperStyle = StyleSheet.create({
 	container:{
 		flexDirection:'row',
-		height:60,
+		height:50,
 	},
 
 	left: {
 		flex:1,
-		paddingLeft:20,
-		paddingRight:20,
+		paddingLeft:8,
+		paddingRight:8,
+		paddingTop: 8,
 		backgroundColor: '#48BBEC',
 		alignItems:'center',
 		justifyContent:'center',
@@ -18,14 +19,15 @@ export const NavigatormaperStyle = StyleSheet.create({
 	center: {
 		flex:3,
 		backgroundColor: '#48BBEC',
+		paddingTop: 8,
 		alignItems:'center',
 		justifyContent:'center',
 	},
 	right: {
 		flex:1,
-		paddingLeft:20,
-		paddingRight:20,
-
+		paddingLeft:8,
+		paddingRight:8,
+		paddingTop: 8,
 		backgroundColor: '#48BBEC',
 		alignItems:'center',
 		justifyContent:'center',
