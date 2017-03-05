@@ -9,8 +9,8 @@ import {
 	View,
 	RefreshControl,
 	TouchableOpacity,
-	TouchableHighlight,
 	ActivityIndicator,
+	DrawerLayoutAndroid,
 	ListView
 } from 'react-native';
 
@@ -44,47 +44,76 @@ export default class Weather extends WeatherBaseComponent {
 
 	render() {
 		const spinner = this.state.isLoading ? (
-					<ActivityIndicator
-						style = {styles.loading}
-						hidden = 'true'
-						size = 'large'/>) : (<View/>);
+			<ActivityIndicator
+				style = {styles.loading}
+				hidden = 'true'
+				size = 'large'/>
+		) : (
+			<View/>
+		);
 
 		//搞个延时加载，有数据的时候，才去渲染界面好了
 		const content = (this.state.weather !== null) ? (
 			<ScrollView
-				  refreshControl={
-						<RefreshControl
-							refreshing={this.state.isLoading}
-							onRefresh={this.getWeather.bind(this)}
-							tintColor='red'
-							title = {this.state.isLoading ? '刷新中....' : '下拉刷新'}
-							/>
-						}>
-				<WeatherTopComponent basic = {this.state.basic} nowWeather={this.state.nowWeather}/>
-				<DailyForeCastComponent daily_forecast = {this.state.daily_forecast}/>
+				refreshControl={
+					<RefreshControl
+						progressBackgroundColor="#ffffff"
+						refreshing={this.state.isLoading}
+						onRefresh={this.getWeather.bind(this)}
+						tintColor = "#48BBEC"
+						title = {this.state.isLoading ? '刷新中....' : '下拉刷新'}
+						/>
+				}>
+
+				<WeatherTopComponent
+					basic = {this.state.basic}
+					nowWeather={this.state.nowWeather}/>
+
+				<DailyForeCastComponent ref="listview" daily_forecast = {this.state.daily_forecast}/>
+
 				<AirQualityComponent aqi = {this.state.aqi} />
+
 				<SuggestionComponent suggestion = {this.state.suggestion}/>
+
 			</ScrollView>
-		) : (<View/>)
+		) : (
+			<View/>
+		)
 
 		return(
-			<Image style={CommonStyle.back_image} source={{uri : this.state.back_image}}>
+			<Image
+				style={CommonStyle.back_image}
+				source={{uri : this.state.back_image}}>
+
 				<View style={NavigatormaperStyle.container}>
-		    			<TouchableHighlight style={NavigatormaperStyle.left}
-								underlayColor= '#48BBFF'
-								onPress={this.onLeftOnClick.bind(this)}>
-		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
-		    			</TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.center}>
-					    	<Text style={NavigatormaperStyle.title}>{this.props.cityName}</Text>
-					    </TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.right}>
-						    <Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
-						</TouchableHighlight>
-		    	</View>
-		    	{content}
-		    	{spinner}
-				</Image>
+
+					<TouchableOpacity
+						style={NavigatormaperStyle.left}
+						onPress={this.onLeftOnClick.bind(this)}>
+
+						<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
+
+					</TouchableOpacity>
+
+					<TouchableOpacity style={NavigatormaperStyle.center}>
+
+						<Text style={NavigatormaperStyle.title}>
+							{this.props.cityName}
+						</Text>
+
+					</TouchableOpacity>
+
+					<TouchableOpacity style={NavigatormaperStyle.right}>
+
+						<Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
+
+					</TouchableOpacity>
+
+				</View>
+				{content}
+				{spinner}
+
+			</Image>
 
 		);
 	}
@@ -111,28 +140,33 @@ export default class Weather extends WeatherBaseComponent {
 	getWeather() {
 		this.weatherAPI.getWeather(this.props.weatherId,(json)=>{
 			let weatherInfo = json.HeWeather[0];
-				if(weatherInfo.status == 'ok'){//请求到天气数据
-					this.setState({
-						isLoading: false,
-						weather: weatherInfo,
-						basic: weatherInfo.basic,
-						nowWeather: weatherInfo.now,
-						suggestion: weatherInfo.suggestion,
-						aqi: weatherInfo.aqi,
-						daily_forecast: weatherInfo.daily_forecast,
-					})
-				}else{
-					alert("error");
-				}
-		});
-	}
+			if(weatherInfo.status == 'ok'){//请求到天气数据
+			this.setState({
+				isLoading: false,
+				weather: weatherInfo,
+				basic: weatherInfo.basic,
+				nowWeather: weatherInfo.now,
+				suggestion: weatherInfo.suggestion,
+				aqi: weatherInfo.aqi,
+				daily_forecast: weatherInfo.daily_forecast,
+			})
+		}else{
+			alert("error");
+		}
+	});
+}
 
-	componentWillMount() {
-		super.componentWillMount(this._getData.bind(this));
-	}
+componentWillMount() {
+	super.componentWillMount(this._getData.bind(this));
+}
 
-	_getData(){
-		this.getBackgroundPic.bind(this)();
-		this.getWeather.bind(this)();
-	}
+//打开抽屉
+onOpenLeftDrawable(){
+	this.drawer.openDrawer();
+}
+
+_getData(){
+	this.getBackgroundPic.bind(this)();
+	this.getWeather.bind(this)();
+}
 }

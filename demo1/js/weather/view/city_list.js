@@ -5,7 +5,6 @@ import {
 	Text,
 	View,
 	TouchableOpacity,
-	TouchableHighlight,
 	ActivityIndicator,
 	ListView
 } from 'react-native';
@@ -50,8 +49,6 @@ export default class CityList extends WeatherBaseComponent {
 		return dataBlob;
 	}
 
-
-
 	onPress(rowData,sectionID,rowID){
 		let navigator = this.props.navigator;
 		if(navigator){
@@ -89,28 +86,28 @@ export default class CityList extends WeatherBaseComponent {
 					style={NavigatormaperStyle.container}
 					hidden = {!this.state.isLoading}>
 
-					<TouchableHighlight
+					<TouchableOpacity
 						style={NavigatormaperStyle.left}
-						underlayColor= '#48BBFF'
+
 						onPress={this.onLeftOnClick.bind(this)}>
 
 						<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
 
-					</TouchableHighlight>
+					</TouchableOpacity>
 
-					<TouchableHighlight style={NavigatormaperStyle.center}>
+					<TouchableOpacity style={NavigatormaperStyle.center}>
 
 						<Text style={NavigatormaperStyle.title}>
 							{this.props.provinceName}
 						</Text>
 
-					</TouchableHighlight>
+					</TouchableOpacity>
 
-					<TouchableHighlight style={NavigatormaperStyle.right}>
+					<TouchableOpacity style={NavigatormaperStyle.right}>
 
 						<Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
 
-					</TouchableHighlight>
+					</TouchableOpacity>
 
 				</View>
 
@@ -128,9 +125,9 @@ export default class CityList extends WeatherBaseComponent {
 
 	renderRow(rowData,sectionID,rowID){
 		return(
-			<TouchableHighlight
+			<TouchableOpacity
 				onPress={this.onPress.bind(this,rowData,sectionID,rowID)}
-				underlayColor='#dddddd'>
+				>
 
 				<View>
 
@@ -156,7 +153,7 @@ export default class CityList extends WeatherBaseComponent {
 
 				</View>
 
-			</TouchableHighlight>
+			</TouchableOpacity>
 		);
 	}
 

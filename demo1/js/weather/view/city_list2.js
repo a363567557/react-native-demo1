@@ -5,7 +5,6 @@ import {
 	Text,
 	View,
 	TouchableOpacity,
-	TouchableHighlight,
 	ActivityIndicator,
 	ListView
 } from 'react-native';
@@ -75,18 +74,17 @@ export default class CityList2 extends WeatherBaseComponent {
 		return(
 			<View style={styles.container}>
 				<View style={NavigatormaperStyle.container}>
-		    			<TouchableHighlight style={NavigatormaperStyle.left}
-								underlayColor= '#48BBFF'
+		    			<TouchableOpacity style={NavigatormaperStyle.left}
 								onPress={this.onLeftOnClick.bind(this)}>
 
 		    				<Text style={NavigatormaperStyle.leftButton}>BACK</Text>
-		    			</TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.center}>
+		    			</TouchableOpacity>
+					    <TouchableOpacity style={NavigatormaperStyle.center}>
 					    	<Text style={NavigatormaperStyle.title}>{this.props.provinceName}--{this.props.cityName}</Text>
-					    </TouchableHighlight>
-					    <TouchableHighlight style={NavigatormaperStyle.right}>
+					    </TouchableOpacity>
+					    <TouchableOpacity style={NavigatormaperStyle.right}>
 						    <Text style={NavigatormaperStyle.rightButton}>RIGHT</Text>
-						</TouchableHighlight>
+						</TouchableOpacity>
 		    	</View>
 					{spinner}
 				<ListView
@@ -101,9 +99,9 @@ export default class CityList2 extends WeatherBaseComponent {
 
 	renderRow(rowData,sectionID,rowID){
 		return(
-			<TouchableHighlight
+			<TouchableOpacity
 				onPress={this.onPress.bind(this,rowData,sectionID,rowID)}
-				underlayColor='#dddddd'>
+				>
 				<View>
 					<View style={styles.rowContainer}>
 						<View style={styles.textContainer}>
@@ -117,7 +115,7 @@ export default class CityList2 extends WeatherBaseComponent {
 					</View>
 					<View style={styles.separator}/>
 				</View>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		);
 	}
 

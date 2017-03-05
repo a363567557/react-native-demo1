@@ -4,6 +4,7 @@ import {
   View,
   Text,
   ActivityIndicator,
+  Alert,
   TouchableHighlight,
   ListView,
 }from 'react-native';
@@ -21,10 +22,6 @@ class dailyForeCast extends Component{
       };
 
     }
-
-    // componentWillReceiveProps(nextProps){
-    //   this._onDataArrived(nextProps);
-    // }
 
     render(){
       var show = (this.props.daily_forecast !== null);
@@ -47,8 +44,14 @@ class dailyForeCast extends Component{
              );
     }
 
-    rowPressed(){
-
+    rowPressed(rowData){
+      return(
+        <View style={DailyForecastStyle.rowContainer}>
+          <Text style={DailyForecastStyle.date}>
+            {rowData.date}
+          </Text>
+        </View>
+      );
     }
 
     _getRowsStatic(){
@@ -59,6 +62,9 @@ class dailyForeCast extends Component{
     //渲染item
     renderRow(rowData,sectionID,rowID){
       return(
+        <TouchableHighlight
+          onPress={()=> this.rowPressed(rowData)}
+          underlayColor='#dddddd'>
           <View style={DailyForecastStyle.rowContainer}>
             <Text style={DailyForecastStyle.date}>
               {rowData.date}
@@ -73,6 +79,8 @@ class dailyForeCast extends Component{
               {rowData.tmp.min}
             </Text>
           </View>
+        </TouchableHighlight>
+
       )
     }
 }
