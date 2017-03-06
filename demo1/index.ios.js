@@ -10,7 +10,7 @@ import ButtonTest from './js/widget/ButtonTest';
 export default class demo1 extends React.Component {
   render() {
     return (
-      	<ButtonTest />
+      	<WeatherComponent />
     );
   }
 }

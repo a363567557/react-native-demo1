@@ -10,6 +10,7 @@ import {
 }from 'react-native';
 
 import DailyForecastStyle from '../style/DailyForecastStyle';
+import ListItem from '../../widget/ListItem';
 
 class dailyForeCast extends Component{
     constructor(props){
@@ -44,44 +45,16 @@ class dailyForeCast extends Component{
              );
     }
 
-    rowPressed(rowData){
-      return(
-        <View style={DailyForecastStyle.rowContainer}>
-          <Text style={DailyForecastStyle.date}>
-            {rowData.date}
-          </Text>
-        </View>
-      );
-    }
 
     _getRowsStatic(){
       const dataBlob = [''];
       return dataBlob;
     }
 
-    //渲染item
-    renderRow(rowData,sectionID,rowID){
-      return(
-        <TouchableHighlight
-          onPress={()=> this.rowPressed(rowData)}
-          underlayColor='#dddddd'>
-          <View style={DailyForecastStyle.rowContainer}>
-            <Text style={DailyForecastStyle.date}>
-              {rowData.date}
-            </Text>
-            <Text style={DailyForecastStyle.weather}>
-              {rowData.cond.txt_d}
-            </Text>
-            <Text style={DailyForecastStyle.maxTemp}>
-              {rowData.tmp.max}
-            </Text>
-            <Text style={DailyForecastStyle.minTemp}>
-              {rowData.tmp.min}
-            </Text>
-          </View>
-        </TouchableHighlight>
-
-      )
+    renderRow (rowData){
+        return(
+            <ListItem rowData = {rowData}/>
+        )
     }
 }
 
