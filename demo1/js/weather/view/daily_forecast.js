@@ -45,12 +45,6 @@ class dailyForeCast extends Component{
              );
     }
 
-
-    _getRowsStatic(){
-      const dataBlob = [''];
-      return dataBlob;
-    }
-
     renderRow (rowData){
         return(
             <ListItem rowData = {rowData}/>
