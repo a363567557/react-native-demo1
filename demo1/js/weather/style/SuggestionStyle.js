@@ -10,6 +10,7 @@ var WeatherTopStyle = StyleSheet.create({
     container: {
         marginTop: 20,
         backgroundColor: '#aa78d1dd',
+        marginBottom: 20,
     },
     suggestionContainer: {
         flexDirection: 'column',

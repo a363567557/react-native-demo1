@@ -54,7 +54,7 @@ export default class Weather extends WeatherBaseComponent {
 
 		//搞个延时加载，有数据的时候，才去渲染界面好了
 		const content = (this.state.weather !== null) ? (
-			<ScrollView
+			<ScrollView style={{paddingVertical: 20}}
 				refreshControl={
 					<RefreshControl
 						progressBackgroundColor="#ffffff"
@@ -69,7 +69,7 @@ export default class Weather extends WeatherBaseComponent {
 					basic = {this.state.basic}
 					nowWeather={this.state.nowWeather}/>
 
-				<DailyForeCastComponent ref="listview" daily_forecast = {this.state.daily_forecast}/>
+				<DailyForeCastComponent daily_forecast = {this.state.daily_forecast}/>
 
 				<AirQualityComponent aqi = {this.state.aqi} />
 
